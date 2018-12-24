@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "194908885417",
+    "firebase_url": "https://proyecto-1-daa92.firebaseio.com",
+    "project_id": "proyecto-1-daa92",
+    "storage_bucket": "proyecto-1-daa92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194908885417:android:e6f8324ae0c61dcb",
+        "android_client_info": {
+          "package_name": "com.example.administrador.primerproyecto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194908885417-4e35ra7jkbt5sqeqif4v0uknio3583le.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.administrador.primerproyecto",
+            "certificate_hash": "3c29e74e689ff88960e79b68902beab5ceaddcbb"
+          }
+        },
+        {
+          "client_id": "194908885417-e9hoga3c960jeklnegkvb8o2o05budt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnfkHPM8ZsbCPcNAq4pKOjdJQ8GMWBZiM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194908885417-e9hoga3c960jeklnegkvb8o2o05budt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194908885417:android:936edadfc989389d",
+        "android_client_info": {
+          "package_name": "com.jhon.caear.contabilidadpersonas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194908885417-fsr8sreqr62mbj8hua53qfucub34b8n8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jhon.caear.contabilidadpersonas",
+            "certificate_hash": "1dba91c446b31edfcfec76ef0077c04d362741e4"
+          }
+        },
+        {
+          "client_id": "194908885417-e9hoga3c960jeklnegkvb8o2o05budt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnfkHPM8ZsbCPcNAq4pKOjdJQ8GMWBZiM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194908885417-e9hoga3c960jeklnegkvb8o2o05budt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

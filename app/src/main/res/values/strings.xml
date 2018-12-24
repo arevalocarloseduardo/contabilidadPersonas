@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">contabilidadPersonas</string>
+    <string name="title_activity_mostrar_datos">MostrarDatos</string>
+</resources>
