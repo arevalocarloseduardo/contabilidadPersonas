@@ -1,5 +1,6 @@
 package com.jhon.caear.contabilidadpersonas
 
+import android.content.ContentValues
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,7 @@ import android.widget.*
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_inicio.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity(),UserSelection {
 
     lateinit var myBtnGuardar:Button
     lateinit var myEtGrandes:EditText
@@ -19,46 +20,53 @@ class MainActivity : AppCompatActivity() {
     lateinit var listReuniones: MutableList<Reunion>
     lateinit var myRvlist:RecyclerView
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inicio)
-
+    override fun onUserSelected(user: Reunion) {
+        Toast.makeText(this, user.grandes, Toast.LENGTH_SHORT).show()
+    }
+    override fun getLayout(): Int = R.layout.activity_inicio
+    override fun activityOnCreate(savedInstanceState: Bundle?) {
         mybtnMostrar=btn_mostrar
-        myBtnGuardar=btn_enviar
-        myEtGrandes=et_grandes
-        myEtninos=et_ninos
-        myEtbebes=et_bebes
         listReuniones= mutableListOf()
         myRvlist=rvList
+        myEtbebes=et_bebes
+        myEtninos=et_ninos
+        myEtGrandes=et_grandes
+        myBtnGuardar=btn_enviar
 
-
-
-        myRvlist.layoutManager= LinearLayoutManager(this, LinearLayout.VERTICAL,false)
-        val mi2Adapter= AdapterDatos(listReuniones)
-        myRvlist.adapter = mi2Adapter
-
-
-
-
+        setRecycler(myRvlist,listReuniones)
 
         mybtnMostrar.setOnClickListener {
-
-            myRvlist.adapter = mi2Adapter
+            setRecycler(myRvlist,listReuniones)
         }
         myBtnGuardar.setOnClickListener {
-
-            var B =myEtbebes.text.toString()
             var G =myEtGrandes.text.toString()
             var N =myEtninos.text.toString()
-            if (verificarDatos(B,G,N)){
-                crearNuevaReunion(B,G,N)
+            var B =myEtbebes.text.toString()
+
+val context = this
+            if (verificarDatos(G,N,B)){
+               val admin =BaseDatos(this,"administrador",null,1)
+                val bd = admin.writableDatabase
+                val registro= ContentValues()
+                registro.put("codigo", G)
+                registro.put("descripcion",N)
+                registro.put("precio",B)
+                bd.insert("articulos",null,registro)
+                bd.close()
+                crearNuevaReunion(G,N,B)
                 myEtGrandes.setText("")
-                myEtbebes.setText("")
                 myEtninos.setText("")
+                myEtbebes.setText("")
+
             }
         }
+    }
+
+    private fun setRecycler(myRecycler: RecyclerView?, lista: MutableList<Reunion>) {
+        //recibo por parametro la lista de objetos y el contenedor
+        myRecycler?.layoutManager= LinearLayoutManager(this, LinearLayout.VERTICAL,false)
+        val userAdapter = AdapterDatos(lista, this)
+        myRecycler?.adapter = userAdapter
     }
 
     private fun mostrarActivity() {
@@ -69,9 +77,9 @@ class MainActivity : AppCompatActivity() {
         // intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent2)
 
-}
+    }
 
-    private fun verificarDatos(b: String, g: String, n: String): Boolean {
+    private fun verificarDatos(g: String, n: String, b: String): Boolean {
         if (b==""||g==""||n==""){
             Toast.makeText(this,"los campos no tienen que estar vacios", Toast.LENGTH_LONG).show()
             return false
@@ -84,8 +92,8 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun crearNuevaReunion(b: String, g: String, n: String) {
-        val reu = Reunion(b,g,n)
+    private fun crearNuevaReunion(g: String, n: String, b: String) {
+        val reu = Reunion(g.toInt(),n.toInt(),b.toInt())
         listReuniones.add(reu)
         agregarBaseDatos(reu)
     }
@@ -98,3 +106,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
